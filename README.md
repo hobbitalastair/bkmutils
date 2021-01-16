@@ -8,3 +8,6 @@ Let's store them as traditional files instead.
 uri=<uri>
 ```
 
+Alternatives are .desktop files and .url files, both of which would feature
+better integration with existing tools but are more complex.
+
