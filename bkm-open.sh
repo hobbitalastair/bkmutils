@@ -21,7 +21,7 @@ for file in "$@"; do
         continue
     fi
 
-    if [ "$(printf "${uri}" | wc -l)" -gt 0 ]; then
+    if [ "$(printf '%s' "${uri}" | wc -l)" -gt 0 ]; then
         printf '%s: multiple uri in bookmark file\n' "$0"
         continue
     fi
