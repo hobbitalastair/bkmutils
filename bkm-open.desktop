@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=bkm-open
+Comment=Bookmark file open utility
+Exec=/usr/bin/bkm-open
+NoDisplay=true
+MimeType=application/x-bkmutils;
