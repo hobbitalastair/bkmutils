@@ -3,6 +3,7 @@ BINDIR := ${PREFIX}/bin
 DESKTOPDIR := ${PREFIX}/share/applications
 MIMEDIR := ${PREFIX}/share/mime/packages
 COMPLETION_DIR_BASH := ${PREFIX}/share/bash-completion
+MIMEDISPATCHINSTALL := mime-dispatch-install
 LIBS =
 CC = gcc
 CFLAGS = -Wall -Werror -O2 -g
@@ -20,7 +21,7 @@ all: $(OBJS)
 	cp -f $< $@
 	chmod +x $@
 
-install: install_objs install_completion install_mime install_desktop
+install: install_objs install_completion install_mime install_desktop install_mimedispatch
 	
 install_objs: $(OBJS)
 	mkdir -p "${BINDIR}/"
@@ -43,6 +44,12 @@ install_desktop: $(DESKTOP)
 	for obj in ${DESKTOP}; do \
 		install -m644 "$$obj" "${DESKTOPDIR}/"; \
 	done
+
+install_mimedispatch: install_objs
+	DESTDIR="${DESTDIR}" ${MIMEDISPATCHINSTALL} --vendor "${BINDIR}/bkm-open"
+
+uninstall_mimedispatch:
+	-DESTDIR="${DESTDIR}" ${MIMEDISPATCHINSTALL} --vendor --uninstall "${BINDIR}/bkm-open"
 
 clean:
 	rm -f $(OBJS)

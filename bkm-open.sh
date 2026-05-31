@@ -8,6 +8,16 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 
+if [ "${1:-}" = "--capabilities" ]; then
+    cat <<EOF
+mimetypes:
+    - application/x-bkmutils
+commands:
+    - open
+EOF
+    exit 0
+fi
+
 for file in "$@"; do
     if [ ! -r "${file}" ]; then
         printf "%s: not a file: %s\n" "$0" "${file}"
